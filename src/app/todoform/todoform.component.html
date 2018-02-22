@@ -1,0 +1,61 @@
+<div class="panel-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading background">Create To Do Task</div>
+    <div class="panel-body">
+      <form class="form-inline" #myForm="ngForm" (ngSubmit)="addToDo()">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+              What is to be Done?
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="toDoTask" name="toDoName" placeholder="Name of the Task" required #refTaskName="ngModel">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+              Due Date
+            </div>
+            <input type="date" class="form-control" [(ngModel)]="toDoDate" name="toDoDate" required #refTaskDate="ngModel" min="{{todate | date:'yyyy-MM-dd'}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+              Category
+            </div>
+            <select class="selectpicker" data-width="200px" [(ngModel)]="toDoCat" name="toDoCat" required #refTaskCat="ngModel">
+              <option value="">Select</option>
+              <option>Personal</option>
+              <option>Shopping</option>
+              <option>Wishlist</option>
+              <option>Work</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default btn-block" [disabled]="myForm.invalid">
+            Create Task
+          </button>
+        </div>
+        <br>
+        <div *ngIf="refTaskName?.errors?.required 
+                  && (refTaskName.dirty || refTaskName.touched)" class="alert alert-danger">
+          Name of the Task is Required
+        </div>
+        <div *ngIf="refTaskDate?.errors?.required 
+                  && (refTaskDate.dirty || refTaskDate.touched)" class="alert alert-danger">
+          Date of the Task is Required
+        </div>
+        <div *ngIf="refTaskCat?.errors?.required
+                  && (refTaskCat.dirty || refTaskCat.touched)" class="alert alert-danger">
+          Category of the Task is Required
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

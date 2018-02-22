@@ -1,0 +1,35 @@
+
+<div class="table-responsive" *ngIf="!toDoListService.toDoEmpty">
+    <h2>To Do List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th>Completed?</th> -->
+                <th>#</th>
+                <th>Task Name</th>
+                <th>Due Date(YYYY-DD-MM)</th>
+                <th>Category</th>
+                <th>Delete?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of todo; let i=index">
+                <!-- <td>
+                    <input type="checkbox">
+                </td> -->
+                <td>{{i+1}}</td>
+                <td>{{task.name}}</td>
+                <td>{{task.date}}</td>
+                <td>{{task.category}}</td> 
+                <td>
+                    <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="toDoListService.toDoEmpty">
+    <h2>
+        You don't have anything in the list.
+    </h2>
+</div>
